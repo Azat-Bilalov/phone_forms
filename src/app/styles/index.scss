@@ -1,0 +1,21 @@
+@use 'reset';
+@use 'variables' as *;
+@use 'mixins';
+
+.clean-input {
+    width: 100%;
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    text-overflow: ellipsis;
+    background: none;
+    outline: none;
+    opacity: inherit;
+    caret-color: $color-black;
+
+    &::placeholder {
+        font: inherit;
+        color: $color-gray-main;
+    }
+}

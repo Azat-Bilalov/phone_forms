@@ -1,0 +1,23 @@
+@use '@/app/styles/variables' as *;
+
+.list {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    max-height: 212px;
+    width: 210px;
+
+    &__item {
+        cursor: pointer;
+        padding: 8px 6px;
+
+        &_selected {
+            background: linear-gradient(0deg, rgba(62, 102, 251, 0.25), rgba(62, 102, 251, 0.25)),
+                linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
+        }
+    }
+
+    &__input {
+        display: none;
+    }
+}

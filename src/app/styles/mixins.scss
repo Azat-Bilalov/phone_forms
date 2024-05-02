@@ -1,0 +1,98 @@
+@use 'sass:math';
+
+$transition-default: 0.3s ease;
+
+/* stylelint-disable */
+@mixin transition($properties...) {
+    $animated-property: #{''};
+
+    @if length($properties) > 1 {
+        @for $i from 1 through length($properties) - 1 {
+            $animated-property: $animated-property nth($properties, $i) $transition-default #{', '};
+        }
+    }
+
+    transition: $animated-property nth($properties, length($properties)) $transition-default;
+}
+/* stylelint-enable */
+
+/* stylelint-disable */
+@mixin clamp($lines_count) {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $lines_count;
+}
+/* stylelint-enable */
+
+@mixin square($size) {
+    width: $size;
+    height: $size;
+}
+
+@mixin circle($size) {
+    @include square($size);
+    border-radius: 50%;
+}
+
+@mixin box($sizeX, $sizeY) {
+    width: $sizeX;
+    height: $sizeY;
+}
+
+@mixin hover {
+    @media (hover: hover) {
+        &:hover {
+            @content;
+        }
+    }
+
+    &:active {
+        @content;
+    }
+}
+
+@mixin z-index($value: 1, $position: $relative) {
+    position: $position;
+    z-index: $value;
+}
+
+@mixin media-width($max-width) {
+    @media only screen and (max-width: $max-width) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @include media-width($tablet-width) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @include media-width($mobile-width) {
+        @content;
+    }
+}
+
+@function rem($size, $breakpoint: 1920) {
+    @return math.div($size * 100rem, $breakpoint);
+}
+
+@function rem-tablet($size) {
+    @return rem($size, 768);
+}
+
+@function rem-mobile($size) {
+    @return rem($size, 375);
+}
+
+@mixin link {
+    @include transition(opacity);
+    color: $color-blue-main-100;
+
+    @include hover {
+        opacity: 0.5;
+    }
+}

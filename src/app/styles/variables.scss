@@ -1,0 +1,25 @@
+$color-white: #ffffff;
+$color-black: #000000;
+$color-blue-main: #3e66fb;
+$color-gray-main: #000000af;
+$color-gray-light: #c2c9d1;
+$color-red-main: #f03738;
+$color-green-main: #3cc13b;
+
+$border-radius: 8px;
+$border-width: 1px;
+
+$font-family: 'Montserrat', sans-serif;
+
+:export {
+    colorWhite: $color-white;
+    colorBlack: $color-black;
+    colorBlueMain: $color-blue-main;
+    colorGrayMain: $color-gray-main;
+    colorGrayLight: $color-gray-light;
+    colorRedMain: $color-red-main;
+    colorGreenMain: $color-green-main;
+    borderRadius: $border-radius;
+    borderWidth: $border-width;
+    fontFamily: $font-family;
+}

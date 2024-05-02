@@ -1,0 +1,45 @@
+.typo {
+    font-family: 'Open Sans', sans-serif;
+
+    &_variant_caption {
+        font-size: 12px;
+        line-height: 16px;
+    }
+
+    &_variant_body {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    &_weight_light {
+        font-weight: 400;
+    }
+
+    &_weight_heavy {
+        font-weight: 600;
+    }
+
+    &_color_default {
+        color: #000000;
+    }
+
+    &_color_primary {
+        color: #000000;
+    }
+
+    &_color_secondary {
+        color: #00000080;
+    }
+
+    &_align_left {
+        text-align: left;
+    }
+
+    &_align_center {
+        text-align: center;
+    }
+
+    &_align_right {
+        text-align: right;
+    }
+}
