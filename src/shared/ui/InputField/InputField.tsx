@@ -3,8 +3,6 @@ import clsx from 'clsx';
 import { BaseField, BaseFieldProps } from '../basic/BaseField';
 import { useFieldFocus } from '@/shared/lib/hooks/useFieldFocus';
 
-import s from './InputField.module.scss';
-
 type InputProps = Omit<React.HTMLProps<HTMLInputElement>, 'onChange'>;
 
 export type InputFieldProps = BaseFieldProps &
@@ -50,7 +48,7 @@ const InputFieldUnwrapped = (
         >
             <input
                 ref={ref}
-                className={clsx(s['input-field'], 'clear-input', inputClassName)}
+                className={clsx('clean-input', inputClassName)}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 onChange={handleChange}

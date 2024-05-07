@@ -2,21 +2,28 @@ import { Status } from '@/shared/lib/types/Status';
 import { InputField } from '@/shared/ui/InputField';
 import { Typo } from '@/shared/ui/basic/Typo';
 import React from 'react';
+import { PhoneNumbersStore } from '../model/PhoneNumbersStore';
+import { observer } from 'mobx-react-lite';
 
 export type PhoneNumbersProps = {
-    mask: string;
-    numbers: string[];
+    model: PhoneNumbersStore;
     status?: Status;
-    onChange: (numbers: string[]) => void;
 };
 
 const MOVE_LEFT_KEYS = new Set(['Backspace', 'ArrowLeft']);
 const MOVE_RIGHT_KEYS = new Set(['ArrowRight']);
 
-export const PhoneNumbers: React.FC<PhoneNumbersProps> = ({ mask, numbers, status, onChange }) => {
-    const refs = React.useRef<(HTMLInputElement | null)[]>([]);
+const PhoneNumbersUnwrapped: React.FC<PhoneNumbersProps> = ({ model, status }) => {
+    const {
+        currentMask,
+        numbersCount,
+        value: numbers,
+        setValue: setNumbers,
+        validate,
+        unValidate,
+    } = model;
 
-    console.log('refs', refs.current);
+    const refs = React.useRef<(HTMLInputElement | null)[]>([]);
 
     const handleChange = React.useCallback(
         (index: number) => (value: string) => {
@@ -24,12 +31,14 @@ export const PhoneNumbers: React.FC<PhoneNumbersProps> = ({ mask, numbers, statu
                 return;
             }
 
+            unValidate();
+
             const newNumbers = [...numbers];
             newNumbers[index] = value;
-            onChange(newNumbers);
+            setNumbers(newNumbers);
 
             // @todo: исправить ошибку перехода, когда исходное значение было тем же самым
-            if (value && index < numbers.length - 1) {
+            if (value && index < numbersCount - 1) {
                 const nextInput = refs.current[index + 1];
                 if (nextInput) {
                     nextInput.focus();
@@ -38,14 +47,18 @@ export const PhoneNumbers: React.FC<PhoneNumbersProps> = ({ mask, numbers, statu
                 }
             }
         },
-        [numbers]
+        [numbersCount, numbers, setNumbers]
     );
 
     const handleKeyDown = React.useCallback(
         (index: number) => (event: React.KeyboardEvent<HTMLInputElement>) => {
+            if (event.key === 'Enter') {
+                validate();
+            }
+
             if (
-                index > 0 &&
                 MOVE_LEFT_KEYS.has(event.key) &&
+                index > 0 &&
                 event.currentTarget.selectionStart === 0
             ) {
                 if (event.key === 'ArrowLeft') {
@@ -55,20 +68,20 @@ export const PhoneNumbers: React.FC<PhoneNumbersProps> = ({ mask, numbers, statu
             }
 
             if (
-                index < numbers.length - 1 &&
                 MOVE_RIGHT_KEYS.has(event.key) &&
+                index < numbersCount - 1 &&
                 (event.currentTarget.selectionStart === 1 || refs.current[index]?.value === '')
             ) {
                 event.preventDefault();
                 refs.current[index + 1]?.focus();
             }
         },
-        [numbers]
+        [numbersCount]
     );
 
     let nextMaskIndex = 0;
 
-    return mask.split('').map((char, index) => {
+    return currentMask.split('').map((char, index) => {
         if (char === '*') {
             const number = numbers[nextMaskIndex];
             const currentMaskIndex = nextMaskIndex;
@@ -99,3 +112,5 @@ export const PhoneNumbers: React.FC<PhoneNumbersProps> = ({ mask, numbers, statu
         );
     });
 };
+
+export const PhoneNumbers = observer(PhoneNumbersUnwrapped);

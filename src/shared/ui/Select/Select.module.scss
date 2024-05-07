@@ -1,10 +1,13 @@
 @use '@/app/styles/variables' as *;
+@use '@/app/styles/colors' as *;
 
 .select {
+    cursor: pointer;
+
     &__options-wrapper {
         border: $border-width solid $color-gray-light;
         border-radius: $border-radius;
-        margin-top: 10px;
+        margin-top: $padding-10;
         overflow: hidden;
 
         box-shadow: 0px 0px 4px 0px #00000040;

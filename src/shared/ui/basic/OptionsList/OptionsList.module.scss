@@ -9,7 +9,7 @@
 
     &__item {
         cursor: pointer;
-        padding: 8px 6px;
+        padding: $padding-6 $padding-4;
 
         &_selected {
             background: linear-gradient(0deg, rgba(62, 102, 251, 0.25), rgba(62, 102, 251, 0.25)),

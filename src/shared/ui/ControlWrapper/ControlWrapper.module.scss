@@ -1,0 +1,19 @@
+@use '@/app/styles/variables' as *;
+
+.root {
+    $self: &;
+    // width: 100%;
+
+    &__container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: $padding-8;
+    }
+
+    &__status {
+        align-items: center;
+        display: flex;
+        gap: $padding-8;
+    }
+}

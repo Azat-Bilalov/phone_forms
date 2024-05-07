@@ -93,15 +93,14 @@ const SelectUnwrapped = <V extends OptionEntity>({
                 className={clsx(s['select'], className)}
                 active={isActive}
                 before={before}
-                // after={
-                //     onReset && !disabled && Boolean(selected.length) ? (
-                //         // <BaseClickable onClick={onReset} withHover>
-                //         <CloseIcon />
-                //     ) : (
-                //         // </BaseClickable>
-                //         <DirectedArrowIcon color="blue-main-75" direction="down" size={20} />
-                //     )
-                // }
+                after={
+                    onReset && !disabled && Boolean(selected.length) ? (
+                        // @todo: добавить base-clickable
+                        <CloseIcon />
+                    ) : (
+                        <DirectedArrowIcon color="color-gray-main" direction="down" size={20} />
+                    )
+                }
                 status={status}
                 ref={containerRef}
                 disabled={disabled}
@@ -129,7 +128,12 @@ const SelectUnwrapped = <V extends OptionEntity>({
                 open={isOpen}
             >
                 {children || (
-                    <OptionList options={options} selected={selectedIds} onChange={handleChange} />
+                    <OptionList
+                        options={options}
+                        selected={selectedIds}
+                        onChange={handleChange}
+                        type={multi ? 'checkbox' : 'radio'}
+                    />
                 )}
             </Popper>
         </>

@@ -1,0 +1,17 @@
+$color-white: #ffffff;
+$color-black: #000000;
+$color-blue-main: #3e66fb;
+$color-gray-main: #00000080;
+$color-gray-light: #c2c9d1;
+$color-red-main: #f03738;
+$color-green-main: #3cc13b;
+
+:export {
+    color-white: $color-white;
+    color-black: $color-black;
+    color-blue-main: $color-blue-main;
+    color-gray-main: $color-gray-main;
+    color-gray-light: $color-gray-light;
+    color-red-main: $color-red-main;
+    color-green-main: $color-green-main;
+}

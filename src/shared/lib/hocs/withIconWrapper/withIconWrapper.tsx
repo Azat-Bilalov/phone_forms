@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 import * as React from 'react';
 
+import colors from '@/app/styles/colors.module.scss';
+
 import s from './IconWrapper.module.scss';
 
 export type IconSizeProps =
@@ -27,14 +29,14 @@ export const withIconWrapper = (Component: React.FC<React.SVGProps<SVGSVGElement
     React.memo(({ className, size, width, height, color, ...props }: IconProps) => {
         const iconWidth = width || size;
         const iconHeight = height || size;
+        const iconColor = color && colors[color];
 
         return (
             <Component
                 className={clsx(className, s.icon)}
                 style={{ width: iconWidth, height: iconHeight }}
                 role="img"
-                // @todo: сделать импорт цветов из styles
-                color={color}
+                color={iconColor}
                 {...props}
             />
         );

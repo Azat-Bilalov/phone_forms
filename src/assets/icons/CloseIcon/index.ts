@@ -1,6 +1,4 @@
 import { withIconWrapper } from '@/shared/lib/hocs/withIconWrapper';
-import { ReactComponent } from './CloseIcon.c.svg';
+import SVGComponent from './CloseIcon';
 
-console.log(ReactComponent);
-
-export const CloseIcon = withIconWrapper(ReactComponent);
+export const CloseIcon = withIconWrapper(SVGComponent);

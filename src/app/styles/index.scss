@@ -1,5 +1,6 @@
 @use 'reset';
 @use 'variables' as *;
+@use 'colors' as *;
 @use 'mixins';
 
 .clean-input {
@@ -13,9 +14,11 @@
     outline: none;
     opacity: inherit;
     caret-color: $color-black;
+    font-family: $font-family;
 
     &::placeholder {
         font: inherit;
         color: $color-gray-main;
+        opacity: 1;
     }
 }

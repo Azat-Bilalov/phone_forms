@@ -1,0 +1,11 @@
+@use 'colors' as *;
+
+:export {
+    colorWhite: color-white;
+    colorBlack: color-black;
+    colorBlueMain: color-blue-main;
+    colorGrayMain: color-gray-main;
+    colorGrayLight: color-gray-light;
+    colorRedMain: color-red-main;
+    colorGreenMain: color-green-main;
+}
